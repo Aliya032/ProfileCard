@@ -2,13 +2,45 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 
+const skills = [
+  {
+    skill: "HTML+CSS",
+    level: "advanced",
+    color: "#2662EA",
+  },
+  {
+    skill: "JavaScript",
+    level: "advanced",
+    color: "#A23BEC",
+  },
+  {
+    skill: "Web Design",
+    level: "beginner",
+    color: "#C3DCAF",
+  },
+  {
+    skill: "Git and GitHub",
+    level: "intermediate",
+    color: "#E84F33",
+  },
+  {
+    skill: "React",
+    level: "advanced",
+    color: "#60DAFB",
+  },
+  {
+    skill: "Java",
+    level: "intermediate",
+    color: "#FF3B00",
+  },
+];
+
 function App() {
   return (
     <div className="card">
       <Avatar />
       <div className="data">
         <Intro />
-        {/*should contain one skill component for each web dev skill that you have, customized with props*/}
         <SkillList />
       </div>
     </div>
@@ -31,22 +63,22 @@ function Intro() {
 function SkillList() {
   return (
     <div className="skill-list">
-      <Skill skill="HTML" emoji="<⁄>" color="#ff1493" />
-      <Skill skill="CSS" emoji="🎨🖌️" color="#ff4500" />
-      <Skill skill="Java" emoji="👩‍💻" color="#bfff00" />
-      <Skill skill="Python" emoji="💪" color="#00bfff" />
-      <Skill skill="JS" emoji="🧩" color="#d62beb" />
-      <Skill skill="React" emoji="🌐" color="#d90368" />
-      <Skill skill="Node JS" emoji="💻" color="#ffdd00" />
+      {skills.map((skill) => (
+        <Skill skill={skill.skill} color={skill.color} level={skill.level} />
+      ))}
     </div>
   );
 }
 
-function Skill(props) {
+function Skill({ skill, color, level }) {
   return (
-    <div className="skill" style={{ backgroundColor: props.color }}>
-      <span>{props.skill}</span>
-      <span>{props.emoji}</span>
+    <div className="skill" style={{ backgroundColor: color }}>
+      <span>{skill}</span>
+      <span>
+        {level === "beginner" && "👶"}
+        {level === "intermediate" && "👍"}
+        {level === "advanced" && "💪"}
+      </span>
     </div>
   );
 }
